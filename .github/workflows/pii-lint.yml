@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Escaneia arquivos em busca de PII
-        uses: sauanna/pii-br@v0.3
+        uses: misspaiva/pii-br@v0.3
         with:
           fail-on-found: 'true'
