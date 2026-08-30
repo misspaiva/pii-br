@@ -16,46 +16,33 @@ if (!alvo) {
   process.exit(1);
 }
 
-// Expande o alvo: arquivo unico, pasta, ou glob simples tipo **/*.txt
+// Expande o alvo: arquivo unico, ou todos os arquivos do repo (**/*)
 function listarArquivos(alvo) {
   if (fs.existsSync(alvo) && fs.statSync(alvo).isFile()) return [alvo];
-
-  let base = process.cwd();
-  let sufixo = alvo;
-  // se o glob tem pasta antes do primeiro *, separa a parte que existe
-  const partes = alvo.split('/');
-  const idxPrimeiroCuringa = partes.findIndex((p) => p.includes('*'));
-  if (idxPrimeiroCuringa > 0) {
-    const dirParte = partes.slice(0, idxPrimeiroCuringa).join('/');
-    if (fs.existsSync(dirParte)) {
-      base = path.resolve(dirParte);
-      sufixo = partes.slice(idxPrimeiroCuringa).join('/');
-    }
-  }
-
-  const regexParts = sufixo.split('/').map((p) => {
-    if (p === '**') return '(?:.+\\/)?';
-    return p.replace(/[.+^${}()|[\]\\]/g, '\\\\$&').replace(/\*/g, '[^/]*');
-  });
-  const regex = new RegExp('^' + regexParts.join('/') + '$');
-
-  const saida = [];
+  const tudo = [];
   function walk(dir) {
     for (const nome of fs.readdirSync(dir)) {
-      if (nome === 'node_modules' || nome === '.git') continue;
-      const completo = path.join(dir, nome).replace(/\\/g, '/');
-      const rel = path.relative(process.cwd(), completo).replace(/\\/g, '/');
+      if (nome === "node_modules" || nome === ".git") continue;
+      const completo = path.join(dir, nome);
       if (fs.statSync(completo).isDirectory()) walk(completo);
-      else if (regex.test(rel)) saida.push(rel);
+      else tudo.push(path.relative(process.cwd(), completo).replace(/\\/g, "/"));
     }
   }
-  walk(base);
-  return saida;
+  walk(process.cwd());
+  const m = alvo.split("/").pop();
+  if (alvo === "**/*" || m === "*") return tudo;
+  if (m.startsWith("*.")) {
+    return tudo.filter((f) => f.endsWith(m.slice(1)));
+  }
+  return tudo.filter((f) => f === alvo);
 }
 
 let arquivos;
 try {
   arquivos = listarArquivos(alvo);
+  const IGNORAR = ["tests/", "src/detectors/", "package.json", "README.md"];
+  arquivos = arquivos.filter((f) => !IGNORAR.some((p) => f === p || f.startsWith(p)));
+
   if (arquivos.length === 0) {
     console.error('Nenhum arquivo encontrado para o padrao: ' + alvo);
     process.exit(1);
