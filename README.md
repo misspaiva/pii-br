@@ -1,5 +1,8 @@
 # pii-br 🇧🇷
 
+[![PII Lint](https://github.com/misspaiva/pii-br/actions/workflows/pii-lint.yml/badge.svg)](https://github.com/misspaiva/pii-br/actions/workflows/pii-lint.yml)
+
+
 Biblioteca **determinística** para detectar e validar dados pessoais (PII)
 brasileiros em textos — CPF, CNPJ, e-mail, telefone e CEP.
 
