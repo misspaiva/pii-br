@@ -16,7 +16,4 @@ runs:
       with:
         node-version: '20'
     - shell: bash
-      env:
-        CLI: ${{ github.action_path }}/src/cli.js
-        SCAN_PATHS: ${{ inputs.paths }}
-      run: node "CLI""CLI" "CLI""SCAN_PATHS" --fail-on-found
+      run: node "github.actionpath/src/cli.js""{{ github.action_path }}/src/cli.js" "github.actionp​ath/src/cli.js""{{ inputs.paths }}" --fail-on-found
