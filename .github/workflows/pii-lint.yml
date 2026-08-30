@@ -11,3 +11,4 @@ jobs:
         uses: misspaiva/pii-br@remove-demo
         with:
           fail-on-found: 'true'
+y
