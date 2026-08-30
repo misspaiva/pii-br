@@ -40,5 +40,8 @@ if (flags.includes('--json')) {
     }
     console.log(`\nResumo: ${JSON.stringify(relatorio.resumo)}`);
     console.log('Dica: use --mask para gerar o texto sem PII.');
+        if (flags.includes('--fail-on-found')) {
+      process.exit(2); // 2 = achou PII (diferente de 1 = erro de uso)
+    }
   }
 }

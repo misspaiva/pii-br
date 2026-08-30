@@ -1,0 +1,24 @@
+name: 'pii-br action'
+description: 'Detecta e valida PII brasileira (CPF, CNPJ, email, telefone, CEP) em pull requests'
+author: 'sauanna'
+
+inputs:
+  fail-on-found:
+    description: 'Falha o check se encontrar PII valida'
+    required: false
+    default: 'true'
+  paths:
+    description: 'Glob dos arquivos para escanear'
+    required: false
+    default: '**/*.txt'
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - shell: bash
+      run: |
+        output=(node(node(node{{ github.action_path }}/src/cli.js "${{ inputs.paths }}" --fail-on-found 2>&1 || true)
+        echo "$output"
