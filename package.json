@@ -1,0 +1,13 @@
+{
+  "name": "pii-br",
+  "version": "0.1.0",
+  "description": "Detecção e validação de dados pessoais brasileiros (CPF, CNPJ, PII BR)",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node tests/run.js"
+  },
+  "keywords": ["pii", "lgpd", "cpf", "cnpj", "brasil", "privacidade"],
+  "author": "Sauanna Paiva <paivasauanna@gmail.com>",
+  "license": "MIT"
+}
