@@ -1,5 +1,5 @@
 ﻿name: 'pii-br'
-description: 'Escaneia o repo em busca de PII brasileira (CPF, CNPJ, RG, telefone, email, PIX)'
+description: 'Escaneia o repo em busca de PII brasileira'
 inputs:
   paths:
     description: 'Glob dos arquivos a escanear'
@@ -16,4 +16,5 @@ runs:
       with:
         node-version: '20'
     - shell: bash
-      run: node "github.actionpath/src/cli.js""{{ github.action_path }}/src/cli.js" "github.actionp​ath/src/cli.js""{{ inputs.paths }}" --fail-on-found
+      run: node "${{ github.action_path }}/src/cli.js" "${{ inputs.paths }}" --fail-on-found
+
