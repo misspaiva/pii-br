@@ -1,5 +1,8 @@
 ﻿name: 'pii-br'
-description: 'Escaneia o repo em busca de PII brasileira'
+description: 'Detecta e mascara dados pessoais brasileiros (CPF, CNPJ, email, CEP, telefone, PIX) com validação de dígitos verificadores'
+branding:
+  icon: 'shield'
+  color: 'green'
 inputs:
   paths:
     description: 'Glob dos arquivos a escanear'
