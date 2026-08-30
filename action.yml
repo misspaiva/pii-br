@@ -1,4 +1,4 @@
-﻿name: 'pii-br'
+name: 'pii-br'
 description: 'Detecta e mascara dados pessoais brasileiros (CPF, CNPJ, email, CEP, telefone, PIX) com validação de dígitos verificadores'
 branding:
   icon: 'shield'
