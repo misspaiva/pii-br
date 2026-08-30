@@ -1,6 +1,6 @@
 name: 'pii-br action'
 description: 'Detecta e valida PII brasileira (CPF, CNPJ, email, telefone, CEP) em pull requests'
-author: 'sauanna'
+author: 'misspaiva'
 
 inputs:
   fail-on-found:
