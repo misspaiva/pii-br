@@ -1,1 +1,3 @@
-import "./cpf.test.js";
+require('./cpf.test.js');
+require('./cnpj.test.js');
+require('./email.test.js');
