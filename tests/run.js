@@ -4,3 +4,4 @@ require('./email.test.js');
 require('./telefone.test.js');
 require('./cep.test.js');
 require('./scan.test.js');
+require('./mask.test.js');
