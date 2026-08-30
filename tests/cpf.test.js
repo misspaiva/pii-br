@@ -1,5 +1,6 @@
-import assert from "node:assert";
-import { isValidCpf, findCpfs } from "../src/detectors/cpf.js";
+const test = require('node:test');
+const assert = require('node:assert');
+const { isValidCpf, findCpfs } = require('../src/detectors/cpf');
 
 // VÁLIDOS
 assert.equal(isValidCpf("529.982.247-25"), true);
