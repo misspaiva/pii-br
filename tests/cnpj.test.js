@@ -19,10 +19,12 @@ const cnpjValido2 = gerarCnpjValido('459974180001');
 
 test('CNPJ válido com máscara', () => {
   const c = cnpjValido1; // 11222333000181
-  const mascarado = `c.slice(0,2).{c.slice(0, 2)}.c.slice(0,2).{c.slice(2, 5)}.c.slice(5,8)/{c.slice(5, 8)}/c.slice(5,8)/{c.slice(8, 12)}-${c.slice(12)}`;
-  assert.strictEqual(mascarado, '11.222.333/0001-81'); // guarda-chuva contra typo
+  const mascarado = c.slice(0, 2) + '.' + c.slice(2, 5) + '.' +
+    c.slice(5, 8) + '/' + c.slice(8, 12) + '-' + c.slice(12);
+  assert.strictEqual(mascarado, '11.222.333/0001-81');
   assert.strictEqual(isValid(mascarado), true);
 });
+
 
 test('CNPJ válido sem máscara', () => {
   assert.strictEqual(isValid(cnpjValido2), true);
